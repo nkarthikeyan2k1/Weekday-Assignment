@@ -1,6 +1,9 @@
 import React from "react";
+import {useSelector} from 'react-redux'
 
-function JobCards({jobData}){
+function JobCards(){
+
+    const jobData=useSelector(state=>state.jobData)
 
     return(
         <>
@@ -11,8 +14,11 @@ function JobCards({jobData}){
                         <div key={item.jdUid} className="col-xl-4 col-lg-4 col-md-6 col-sm-12">
                             <div className="card h-100 job-card">
                             <div className="card-body">
+                                <div className="posted-time mb-1">
+                                    <p>⏳ Posted 10 days ago</p>
+                                </div>
                                 <div className="d-flex alihn-items-center ps-1">
-                                    <img src=""  alt="logo" />
+                                    <img height="50" width="50" src="" alt="logo" />
                                     <div className="job-info text-capitalize" style={{marginLeft:"10px"}}>
                                         <h2>company name</h2>
                                         <h3>{item.jobRole}</h3>
@@ -20,26 +26,23 @@ function JobCards({jobData}){
                                     </div>
                                 </div>
                                 <p>Estimated Salary: {`₹${item.minJdSalary||0} - ${item.maxJdSalary} LPA`}
-                                <span aria-label="Offered salary range" class=""> ✅</span>
+                                <span aria-label="Offered salary range"> ✅</span>
                                 </p>
                                 <div className="about-company mb-3">
                                     <h6>About Company</h6>
                                     <div className="opacityEffect">
                                         <p><strong>About us</strong></p>
-                                        <p className="notes"><span>{item.jobDetailsFromCompany.slice(0,300)}</span></p>
+                                        <p className="notes"><span>{item.jobDetailsFromCompany.slice(0,200)}</span></p>
                                         <div className="App"><a>Show More</a></div>
                                     </div>
                                 </div>
                                 <div className="job-info">
                                 <h3>Minimum Experience</h3>
-                                <h2>{item.minExp||'--'} years</h2>
+                                <h2>{item.minExp||0} years</h2>
                             </div>
                             </div>
                             <button className="btn Easy-apply">⚡ Easy Apply</button>
                             <button className="btn Referral">Unlock referral asks</button>
-                            {/* <div className="card-footer">
-                                <small className="text-muted">Last updated 3 mins ago</small>
-                            </div> */}
                             </div>
                         </div>
                     ))}
