@@ -32,5 +32,4 @@ const getJobsDetail=(data={"limit":10,"offset":0})=>{
     });
 }
 
-const APIServices={getJobsDetail}
-export default APIServices;
+export {getJobsDetail};

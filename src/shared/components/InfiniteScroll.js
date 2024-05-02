@@ -6,9 +6,22 @@ const InfiniteScroll=({loadMore})=>{
     useEffect(()=>{
         window.addEventListener('scroll',handelScroll)
         return ()=>window.removeEventListener('scroll',handelScroll)
-    },[loadMore])
+    },[])
 
     const handelScroll=()=>{
+      // const windowHeight = window.innerHeight;
+      // const scrollTop = document.documentElement.scrollTop;
+      // const documentHeight = document.documentElement.offsetHeight;
+      
+      // // Calculate the percentage of scroll completion
+      // const scrollPercentage = (scrollTop + windowHeight) / documentHeight * 100;
+
+      //  // Trigger loadMore when scrolled to 70% of the page height
+      //  console.log('scrollPercentage',Math.floor(scrollPercentage))
+      //   if (Math.floor(scrollPercentage) == 70) {
+      //     loadMore();
+      //   }
+
         if (
             window.innerHeight + document.documentElement.scrollTop
             === document.documentElement.offsetHeight
@@ -17,8 +30,14 @@ const InfiniteScroll=({loadMore})=>{
           }
     }
 
-    // const throttleHandelScroll=UseThrottling(handelScroll,1000)
-
+    const throttleHandelScroll=()=>{
+      // console.log('rrr')
+      //  UseThrottling(handelScroll,500);
+       UseThrottling((()=>{
+        console.log('throttle')
+       }),1000);
+    }
+    // return <div>Your component content here</div>;
 }
 
-export default React.memo(InfiniteScroll);
+export default InfiniteScroll;
