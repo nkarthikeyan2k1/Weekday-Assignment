@@ -2,35 +2,22 @@ import React  from "react";
 import Select from 'react-select';
 import { roles,remote,experience,minSalary,employersCount } from "../../datasets/FiltersData";
 import { debounceFunction } from "../../services/UtlitsServices";
-import {useSelector,useDispatch} from 'react-redux'
+import {useDispatch} from 'react-redux'
 
 function JobsFilter(){
 
-    const jobData=useSelector(state=>state.jobData)
-    const filtersData=useSelector(state=>state.filtersData)
     const dispatch = useDispatch();
 
     // handel the fliter API or local filter changes
     const handeFilterChange=(event)=>{
         const {name,value}=event.target;
-        const filteredJobs = jobData.jdList.filter(job => value.some(role => role.value.toLowerCase() === job.jobRole.toLowerCase()));
-        console.log('customer filter',filteredJobs);
-        dispatch({type:"FILTERJOBS",payload:{[name]:value}})
+        dispatch({type:"FILTERS",payload:{[name]:value}})
     }
 
     //handel the filter selected value
     const handeFilterSelect=(name,data)=>{
-        console.log('name',name)
-        console.log('data',data)
-        const filteredJobs = jobData.jdList.filter((job) => {
-            return data.some(item => (item.value).toLowerCase() === (job[name]).toLowerCase()
-            )
-        });
-        console.log('customer filter',filteredJobs);
-        dispatch({type:"FILTERJOBS",payload:{[name]:data}})
+        dispatch({type:"FILTERS",payload:{[name]:data}})
     }
-
-    // console.log('filtersData',filtersData)
 
     // handel the onchange function in the input box make the delay using the dwbounce
     const throttlingHandleInput = debounceFunction(handeFilterChange, 500);
@@ -70,8 +57,8 @@ function JobsFilter(){
             placeholder="Remote "
         />
         <Select
-            onChange={(value)=>handeFilterSelect("minSalary",value)}
-            name="minSalary"
+            onChange={(value)=>handeFilterSelect("minJdSalary",value)}
+            name="minJdSalary"
             options={minSalary}
             className="basic-single"
             isClearable={true}

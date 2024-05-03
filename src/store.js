@@ -4,7 +4,7 @@ import { configureStore } from '@reduxjs/toolkit';
 const initialState = {
     jobData: {
       jdList: [],
-      totalCount: 0, 
+      totalCount: 0
     },
     filtersData:{
         jobRole:[],
@@ -26,7 +26,7 @@ function reducerHandeler(state=initialState,action){
                     totalCount:action.payload.totalCount
                 },
             };
-        case "FILTERJOBS":
+        case "FILTERS":
             return {
                 ...state,
                 filtersData:({...state.filtersData,...action.payload}),

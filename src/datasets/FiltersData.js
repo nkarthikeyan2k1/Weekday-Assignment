@@ -6,6 +6,7 @@ const roles = [
     { value: 'Flutter', label: 'Flutter',name:"jobRole" },
     { value: 'React Native', label: 'React Native',name:"jobRole" },
     { value: 'Android', label: 'Android',name:"jobRole" },
+    { value: 'Tech Lead', label: 'Tech Lead',name:"jobRole" },
   ];
 
   const employersCount=[
