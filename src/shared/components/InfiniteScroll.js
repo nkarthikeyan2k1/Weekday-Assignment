@@ -20,7 +20,13 @@ const InfiniteScroll=({loadMore})=>{
       top:document.documentElement.scrollTop,
       off:document.documentElement.offsetHeight
       })
-          if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight) {
+
+      const scrollTop = document.documentElement.scrollTop;
+      const innerHeight = window.innerHeight;
+      const offsetHeight = document.documentElement.offsetHeight;
+
+          // if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight) {
+            if (scrollTop >= offsetHeight - innerHeight - 1 && scrollTop <= offsetHeight - innerHeight + 1) {
             loadMore();
           }
           return;
