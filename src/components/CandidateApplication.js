@@ -20,7 +20,7 @@ function CandidateApplication(){
     
     // To handel the API calls
     useEffect(()=>{
-        fetchData()
+        if(isLoading===false) fetchData()
     },[payload])
 
 
@@ -54,16 +54,14 @@ function CandidateApplication(){
         <JobsFilter />
         {jobData?.totalCount > jobData?.jdList.length && <InfiniteScroll loadMore={loadMore} />} 
         {jobData && jobData?.totalCount>0 ? 
-            <div>
-              <JobCard /> 
-                <div className="d-flex justify-content-center">
-                <div className={`loading-indicator${isLoading ? ' active' : ''}`}></div>
-                </div>
-            </div> : 
-            <div className="App">
+              <JobCard />  : 
+            !isLoading && (<div className="App">
                 <img alt="img" src="https://jobs.weekday.works/_next/static/media/nothing-found.4d8f334c.png" width="150" height="150" />
                 <h2>No Jobs available for this category at the moment</h2>
-            </div>}
+            </div>)}
+            <div className="d-flex justify-content-center">
+                <div className={`loading-indicator${isLoading ? ' active' : ''}`}></div>
+            </div>
         </div>
     )
 }
