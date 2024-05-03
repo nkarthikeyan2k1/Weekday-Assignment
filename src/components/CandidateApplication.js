@@ -59,7 +59,7 @@ function CandidateApplication(){
                 <img alt="img" src="https://jobs.weekday.works/_next/static/media/nothing-found.4d8f334c.png" width="150" height="150" />
                 <h2>No Jobs available for this category at the moment</h2>
             </div>)}
-            <div className="d-flex justify-content-center">
+            <div className="d-flex justify-content-center loading-container" >
                 <div className={`loading-indicator${isLoading ? ' active' : ''}`}></div>
             </div>
         </div>

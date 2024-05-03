@@ -173,6 +173,10 @@ border:1px solid rgb(85, 239, 196);
   border-radius: 50%; 
   animation: spin 1s linear infinite; 
 }
+.loading-container{
+height: 100%;
+min-height: 100px;
+}
 
 .loading-indicator.active {
   display: block;
