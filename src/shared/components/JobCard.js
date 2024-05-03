@@ -18,9 +18,9 @@ function JobCards(){
                                     <p>⏳ Posted 10 days ago</p>
                                 </div>
                                 <div className="d-flex alihn-items-center ps-1">
-                                    <img height="50" width="50" src="" alt="logo" />
+                                    <img height="50" width="50" src={item.logoUrl} alt="logo" />
                                     <div className="job-info text-capitalize" style={{marginLeft:"10px"}}>
-                                        <h2>company name</h2>
+                                        <h2>{item.companyName}</h2>
                                         <h3>{item.jobRole}</h3>
                                         <p>{item.location}</p>
                                     </div>

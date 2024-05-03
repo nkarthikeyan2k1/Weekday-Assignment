@@ -17,7 +17,7 @@ const InfiniteScroll=({loadMore})=>{
     const handelScroll=()=>{
       setScroll({
         inner:window.innerHeight,
-      top:Math.floor(document.documentElement.scrollTop),
+      top:document.documentElement.scrollTop,
       off:document.documentElement.offsetHeight
       })
           if (window.innerHeight + Math.floor(document.documentElement.scrollTop) !== document.documentElement.offsetHeight) {

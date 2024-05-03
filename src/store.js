@@ -3,9 +3,17 @@ import { configureStore } from '@reduxjs/toolkit';
 // Initial state
 const initialState = {
     jobData: {
-      jdList: [], // Initialize jdList as an empty array
-      totalCount: 0, // Initialize totalCount to whatever default value makes sense
+      jdList: [],
+      totalCount: 0, 
     },
+    filtersData:{
+        jobRole:[],
+        empCount:[],
+        minExp:null,
+        remote:[],
+        minJdSalary:null,
+        companyName:null
+    }
   };
 
 function reducerHandeler(state=initialState,action){
@@ -17,6 +25,11 @@ function reducerHandeler(state=initialState,action){
                     jdList:[...state.jobData.jdList,...action.payload.jdList],
                     totalCount:action.payload.totalCount
                 },
+            };
+        case "FILTERJOBS":
+            return {
+                ...state,
+                filtersData:({...state.filtersData,...action.payload}),
             };
         default:
             return state;
