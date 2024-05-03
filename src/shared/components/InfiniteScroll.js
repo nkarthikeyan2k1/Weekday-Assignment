@@ -5,7 +5,7 @@ const InfiniteScroll=({loadMore})=>{
 
   const [scroll,setScroll]=useState({
     inner:window.innerHeight,
-    top:Math.ceil(document.documentElement.scrollTop),
+    top:Math.trunc(Math.ceil(document.documentElement.scrollTop)),
     off:document.documentElement.offsetHeight
   })
 
@@ -17,10 +17,10 @@ const InfiniteScroll=({loadMore})=>{
     const handelScroll=()=>{
       setScroll({
         inner:window.innerHeight,
-      top:document.documentElement.scrollTop,
+      top:Math.trunc(Math.ceil(document.documentElement.scrollTop)),
       off:document.documentElement.offsetHeight
       })
-          if (window.innerHeight + Math.ceil(document.documentElement.scrollTop) !== document.documentElement.offsetHeight) {
+          if (window.innerHeight + Math.trunc(Math.ceil(document.documentElement.scrollTop)) !== document.documentElement.offsetHeight) {
             return;
           }
           loadMore();
