@@ -15,6 +15,9 @@ In the project directory, you can run:
 
 ### `npm start`
 
+You can find this project in netlify host provider
+Open [https://lovely-bublanina-a8d18e.netlify.app/](https://lovely-bublanina-a8d18e.netlify.app/) to view it in your browser.
+
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
