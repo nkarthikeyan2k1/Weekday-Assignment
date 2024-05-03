@@ -5,6 +5,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+Go to the priject root path and install all the dependency using the follow command
+
+### `npm install`
+
+After successfull dependency installed run the project 
+
 In the project directory, you can run:
 
 ### `npm start`
