@@ -5,8 +5,7 @@ const InfiniteScroll=({loadMore})=>{
 
   const [scroll,setScroll]=useState({
     inner:window.innerHeight,
-    // top:Math.trunc(document.documentElement.scrollTop),
-    top:window.scrollY,
+    top:document.documentElement.scrollTop,
     off:document.documentElement.offsetHeight
   })
 
@@ -18,14 +17,14 @@ const InfiniteScroll=({loadMore})=>{
     const handelScroll=()=>{
       setScroll({
         inner:window.innerHeight,
-      // top:Math.trunc(document.documentElement.scrollTop),
-      top:window.scrollY,
+      top:document.documentElement.scrollTop,
       off:document.documentElement.offsetHeight
       })
-          if (window.innerHeight + window.scrollY !== document.documentElement.offsetHeight) {
-            return;
+          if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight) {
+            loadMore();
           }
-          loadMore();
+          return;
+          
     }
 
     // handel the scroll evevnt repeted check using the throllefunction
