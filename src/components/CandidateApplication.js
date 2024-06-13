@@ -84,7 +84,7 @@ function CandidateApplication() {
       )}
       <ErrorBoundary FallbackComponent={Fallback} onReset={() => {}}>
         {/* <Suspense fallback={<LoadingBar isLoading={isLoading} />}> */}
-        <Suspense fallback={<JobShimmer />}>
+        <Suspense>
           {jobData && jobData?.totalCount > 0 ? (
             <JobCard />
           ) : (
@@ -102,7 +102,8 @@ function CandidateApplication() {
           )}
         </Suspense>
       </ErrorBoundary>
-      <LoadingBar isLoading={isLoading} />
+      {/* <LoadingBar isLoading={isLoading} /> */}
+      {isLoading && <JobShimmer />}
     </div>
   );
 }
