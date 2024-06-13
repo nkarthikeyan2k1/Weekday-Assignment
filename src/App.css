@@ -260,3 +260,14 @@ section {
   transform: translate(25px);
   background-color: #8a8a8a;
 }
+
+.shimmer-card{
+  height: 510px;
+  /* height: 280px; */
+  width: 322px;
+  /* width: 181px; */
+  /* background-color: #9f9f9f; */
+  background-color: beige;
+border-radius: 25px;
+margin: 10px;
+}

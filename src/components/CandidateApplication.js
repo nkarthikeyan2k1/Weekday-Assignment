@@ -1,10 +1,16 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, lazy, Suspense } from "react";
 import { getJobsDetail } from "../services/APIServices";
 import InfiniteScroll from "../shared/components/InfiniteScroll";
-import JobCard from "../shared/components/JobCard";
+// import JobCard from "../shared/components/JobCard";
 import JobsFilter from "../shared/components/JobsFilter";
 import { useSelector, useDispatch } from "react-redux";
 import { useTheme } from "../ThemeContext";
+import { ErrorBoundary } from "react-error-boundary";
+import Fallback from "../components/Fallback";
+import LoadingBar from "./LoadingBar";
+import JobShimmer from "../shared/components/JobShimmer";
+
+const JobCard = lazy(() => import("../shared/components/JobCard"));
 
 function CandidateApplication() {
   //State declartions
@@ -35,12 +41,6 @@ function CandidateApplication() {
           totalCount: totalCount,
         },
       });
-      // setJobData((prev)=>(
-      //     {
-      //         jdList:[...prev.jdList,...jdList],
-      //         totalCount:totalCount
-      //     }
-      // ))
     } catch (error) {
       console.error("error", error);
     }
@@ -76,26 +76,33 @@ function CandidateApplication() {
       </div>
       <JobsFilter />
       {jobData?.totalCount > jobData?.jdList.length && (
-        <InfiniteScroll loadMore={loadMore} />
+        <ErrorBoundary fallback={Fallback}>
+          <Suspense fallback={() => {}}>
+            <InfiniteScroll loadMore={loadMore} />
+          </Suspense>
+        </ErrorBoundary>
       )}
-      {jobData && jobData?.totalCount > 0 ? (
-        <JobCard />
-      ) : (
-        !isLoading && (
-          <div className="App">
-            <img
-              alt="img"
-              src="https://jobs.weekday.works/_next/static/media/nothing-found.4d8f334c.png"
-              width="150"
-              height="150"
-            />
-            <h2>No Jobs available for this category at the moment</h2>
-          </div>
-        )
-      )}
-      <div className="d-flex justify-content-center loading-container">
-        <div className={`loading-indicator${isLoading ? " active" : ""}`}></div>
-      </div>
+      <ErrorBoundary FallbackComponent={Fallback} onReset={() => {}}>
+        {/* <Suspense fallback={<LoadingBar isLoading={isLoading} />}> */}
+        <Suspense fallback={<JobShimmer />}>
+          {jobData && jobData?.totalCount > 0 ? (
+            <JobCard />
+          ) : (
+            !isLoading && (
+              <div className="App">
+                <img
+                  alt="img"
+                  src="https://jobs.weekday.works/_next/static/media/nothing-found.4d8f334c.png"
+                  width="150"
+                  height="150"
+                />
+                <h2>No Jobs available for this category at the moment</h2>
+              </div>
+            )
+          )}
+        </Suspense>
+      </ErrorBoundary>
+      <LoadingBar isLoading={isLoading} />
     </div>
   );
 }
